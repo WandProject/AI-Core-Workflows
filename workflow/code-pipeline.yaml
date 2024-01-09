@@ -12,7 +12,7 @@ metadata:
     ai.sap.com/version: "2.0"
 spec:
   imagePullSecrets:
-    - name: kdhk # your docker registry secret
+    - name: Wand-P # your docker registry secret
   entrypoint: mypipeline
   templates:
   - name: mypipeline
@@ -22,7 +22,7 @@ spec:
 
   - name: mycodeblock1
     container:
-      image: docker.io/wandproject/house-price:02 # Your docker image name
+      image: docker.io/wandproject/house-price:latest # Your docker image name
       command: ["/bin/sh", "-c"]
       args:
         - "python /app/src/main.py"
