@@ -1,1 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: code-pipeline # executable id, must be unique across all your workflows (YAML files), please modify this to any value (e.g. code-pipeline-12345) if you are not the only user of your SAP AI Core instance.
+  annotations:
+    scenarios.ai.sap.com/name: "Train (Tutorial) - Wand"
+    scenarios.ai.sap.com/description: "Train code to SAP AI Core"
+    executables.ai.sap.com/name: "House Train (Sklearn) - Wand"
+    executables.ai.sap.com/description: "Train with live data"
+    artifacts.ai.sap.com/housedataset.kind: "dataset" # Helps in suggesting the kind of inputs that can be attached.
+  labels:
+    scenarios.ai.sap.com/id: "learning-code"
+    ai.sap.com/version: "1.0"
+spec:
+  imagePullSecrets:
+    - name: va-hub # your docker registry secret
+  entrypoint: mypipeline
+  templates:
+  - name: mypipeline
+    steps:
+    - - name: mypredictor
+        template: mycodeblock1
 
+  - name: mycodeblock1
+    inputs:
+      artifacts:  # placeholder for cloud storage attachements
+        - name: housedataset # a name for the placeholder
+          path: /app/data/ # where to copy in the Dataset in the Docker image
+    container:
+      image: docker.io/wandproject/house-price:03 # Your docker image name
+      imagePullPolicy: Always
+      command: ["/bin/sh", "-c"]
+      args:
+        - "python /app/src/main.py"
