@@ -28,7 +28,9 @@ spec:
           path: /app/data/ # where to copy in the Dataset in the Docker image
     container:
       image: docker.io/wandproject/house-price:03 # Your docker image name
-      imagePullPolicy: Always
       command: ["/bin/sh", "-c"]
+      env:
+        - name: DT_MAX_DEPTH # name of the environment variable inside Docker container
+          value: "3" # will make it as variable later
       args:
         - "python /app/src/main.py"
