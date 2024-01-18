@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: house-metrics-train # executable id, must be unique across all your workflows (YAML files)
+  name: metrics-pipeline # executable id, must be unique across all your workflows (YAML files)
   annotations:
-    scenarios.ai.sap.com/description: "Learning how to ingest data to workflows"
-    scenarios.ai.sap.com/name: "House Price (Tutorial)" # Scenario name should be the use case
+    scenarios.ai.sap.com/name: "Metrics (Tutorial) - Wand"
+    scenarios.ai.sap.com/description: "Learning how to ingest data to workflow"
+    executables.ai.sap.com/name: "House Metrics (Sklearn) - Wand"
     executables.ai.sap.com/description: "Generate metrics"
-    executables.ai.sap.com/name: "training-metrics" # Executable name should describe the workflow in the use case
     artifacts.ai.sap.com/housedataset.kind: "dataset" # Helps in suggesting the kind of artifact that can be attached.
     artifacts.ai.sap.com/housemodel.kind: "model" # Helps in suggesting the kind of artifact that can be generated.
   labels:
@@ -14,7 +14,7 @@ metadata:
     ai.sap.com/version: "2.0"
 spec:
   imagePullSecrets:
-    - name: credstutorialrepo # your docker registry secret
+    - name: va-hub # your docker registry secret
   entrypoint: mypipeline
   arguments:
     parameters: # placeholder for string like inputs
@@ -38,7 +38,7 @@ spec:
             none:   # specify not to compress while uploading to cloud
               {}
     container:
-      image: docker.io/<YOUR_DOCKER_USERNAME>/house-price:04 # Your docker image name
+      image: docker.io/wandproject/house-price:04 # Your docker image name
       command: ["/bin/sh", "-c"]
       env:
         - name: DT_MAX_DEPTH # name of the environment variable inside Docker container
