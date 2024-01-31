@@ -1,9 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: ssf-metrics-v1  # Executable id, must be unique across all your workflows (YAML files)
+  name: ssf-simple-metrics-v1  # Executable id, must be unique across all your workflows (YAML files)
   labels:
-    scenarios.ai.sap.com/id: "ssf-metrics"
+    scenarios.ai.sap.com/id: "ssf-simple-metrics"
     ai.sap.com/version: "1.0"
   annotations:
     scenarios.ai.sap.com/name: "Store Sales - Metrics"
