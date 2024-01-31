@@ -17,7 +17,7 @@ metadata:
 
 spec:
   imagePullSecrets:
-    - name: va-hub  # Docker registry secret
+    - name: wand-docker  # Docker registry secret
   entrypoint: mypipeline
   arguments:
     parameters:
