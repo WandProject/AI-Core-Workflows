@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: ssf-simple-metrics-v1  # Executable id, must be unique across all your workflows (YAML files)
+  name: ssf-simple-metrics-v2  # Executable id, must be unique across all your workflows (YAML files)
   labels:
     scenarios.ai.sap.com/id: "ssf-simple-metrics"
-    ai.sap.com/version: "1.0"
+    ai.sap.com/version: "2.0"
   annotations:
     scenarios.ai.sap.com/name: "Store Sales - Metrics"
     scenarios.ai.sap.com/description: "Evaluating the best regression to apply"
     
-    executables.ai.sap.com/name: "Metrics [1 method]"
-    executables.ai.sap.com/description: "Generate metrics for 1 Regression"
+    executables.ai.sap.com/name: "Metrics [3 methods]"
+    executables.ai.sap.com/description: "Generate metrics for 3 Regressions"
     
     artifacts.ai.sap.com/housedataset.kind: "dataset" # Helps in suggesting the kind of artifact that can be attached.
     artifacts.ai.sap.com/housemodel.kind: "model" # Helps in suggesting the kind of artifact that can be generated.
@@ -44,7 +44,7 @@ spec:
               {}
     
     container:
-      image: docker.io/wandproject/store-sales-forecasting:01  # Docker image name
+      image: docker.io/wandproject/store-sales-forecasting:02  # Docker image name
       command: ["/bin/sh", "-c"]
       args:
         - "python /app/main.py"
