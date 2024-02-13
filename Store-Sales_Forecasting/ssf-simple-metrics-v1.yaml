@@ -19,9 +19,6 @@ spec:
   imagePullSecrets:
     - name: wand-docker  # Docker registry secret
   entrypoint: mypipeline
-  arguments:
-    parameters:
-        - name: DT_MAX_DEPTH  # Identifier local to this workflow
   
   templates:
   - name: mypipeline
