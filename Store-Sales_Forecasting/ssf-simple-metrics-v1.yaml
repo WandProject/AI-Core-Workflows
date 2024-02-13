@@ -47,4 +47,4 @@ spec:
       image: docker.io/wandproject/store-sales-forecasting:01  # Docker image name
       command: ["/bin/sh", "-c"]
       args:
-        - "python /app/src/main.py"
+        - "python /app/main.py"
